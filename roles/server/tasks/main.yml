@@ -1,0 +1,18 @@
+---
+# tasks file for server
+- name: install required software
+  package: name={{ item }} state=present
+  become: yes
+  with_items:
+    - httpd
+    - mariadb-server
+    - php
+    - php-mysql
+    - epel-release
+    - MySQL-python
+- name: start httpd 
+  service: name=httpd state=started
+- name: start mariadb
+  service: name=mariadb.service state=started
+- name: stop firewalld
+  service: name=firewalld state=stopped

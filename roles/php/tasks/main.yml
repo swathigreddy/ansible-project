@@ -1,0 +1,8 @@
+---
+# tasks file for php
+- name: install php extenstions
+  package: name={{ item }} state=present
+  become: yes
+  with_items:
+    - php-common
+    - php-xml
